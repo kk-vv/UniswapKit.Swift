@@ -4,14 +4,14 @@ public enum DexType {
     case uniswap
     case pancakeSwap
 
-    var mediumFeeAmount: KitV3.FeeAmount {
+    public var mediumFeeAmount: KitV3.FeeAmount {
         switch self {
         case .uniswap: return .mediumUniswap
         case .pancakeSwap: return .mediumPancakeSwap
         }
     }
 
-    func factoryAddress(chain: Chain) -> Address {
+    public func factoryAddress(chain: Chain) -> Address {
         switch self {
         case .uniswap:
             switch chain {
@@ -23,7 +23,7 @@ public enum DexType {
         }
     }
 
-    func quoterAddress(chain: Chain) -> Address {
+    public func quoterAddress(chain: Chain) -> Address {
         switch self {
         case .uniswap:
             switch chain {
@@ -35,7 +35,7 @@ public enum DexType {
         }
     }
 
-    func routerAddress(chain: Chain) -> Address {
+    public func routerAddress(chain: Chain) -> Address {
         switch self {
         case .uniswap:
             switch chain {

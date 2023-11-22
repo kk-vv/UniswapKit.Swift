@@ -230,7 +230,7 @@ extension TradeManager {
         return trades
     }
 
-    private static func routerAddress(chain: Chain) throws -> Address {
+    public static func routerAddress(chain: Chain) throws -> Address {
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return try Address(hex: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D")
         case .binanceSmartChain: return try Address(hex: "0x10ED43C718714eb63d5aA57B78B54704E256024E")
@@ -240,7 +240,7 @@ extension TradeManager {
         }
     }
 
-    private static func factoryAddressString(chain: Chain) throws -> String {
+    public static func factoryAddressString(chain: Chain) throws -> String {
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
         case .binanceSmartChain: return "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
@@ -250,7 +250,7 @@ extension TradeManager {
         }
     }
 
-    private static func initCodeHashString(chain: Chain) throws -> String {
+    public static func initCodeHashString(chain: Chain) throws -> String {
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return "0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f"
         case .binanceSmartChain: return "0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa3f4a84f69bd5"
