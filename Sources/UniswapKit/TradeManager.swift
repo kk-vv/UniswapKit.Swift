@@ -3,7 +3,7 @@ import BigInt
 import EvmKit
 import HsCryptoKit
 
-class TradeManager {
+public class TradeManager {
     public let routerAddress: Address
     private let factoryAddressString: String
     private let initCodeHashString: String
