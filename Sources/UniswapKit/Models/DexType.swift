@@ -50,10 +50,10 @@ public enum DexType {
                 return .kitV3
             case .binanceSmartChain:
                 return .kitV3
-            case .polygon: // kit(Quickswap) & kit3
+            case .polygon: // kit(Quickswap v2) & kit3(uniswap v3)
                 return version.kit
             case .avalanche:
-                return .kit //TradeJoe
+                return .kit //kit (Trader Joe)
             case .arbitrumOne:
                 return .kitV3
             default:
@@ -64,7 +64,7 @@ public enum DexType {
             }
         case .quickSwap: // just polygon
             if chain == .polygon {
-                return version.kit
+                return .kit // kit(Quickswap v2)
             }
             return nil
         case .pancakeSwap:
@@ -107,7 +107,7 @@ public enum DexType {
                 
             }
         case .quickSwap:
-            return try! Address(hex: "0x411b0fAcC3489691f28ad58c47006AF5E3Ab3A28")
+            return try! Address(hex: "0x1F98431c8aD98523631AE4a59f267346ea31F984")
         case .pancakeSwap:
             return try! Address(hex: "0x0BFbCF9fa4f9C56B0F40a671Ad40E0805A091865")
         }
