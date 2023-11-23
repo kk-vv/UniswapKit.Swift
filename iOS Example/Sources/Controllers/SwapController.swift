@@ -20,7 +20,7 @@ class SwapController: UIViewController {
     }
     private var state: State = .idle
 
-    private let uniswapKit = try! UniswapKit.KitV3.instance(evmKit: Manager.shared.evmKit)
+    private let uniswapKit = try! UniswapKit.KitV3.instance(evmKit: Manager.shared.evmKit, dexType: .uniswap)
 
     private let fromButton = UIButton()
     private let fromTextField = UITextField()
