@@ -53,7 +53,7 @@ public enum DexType {
             case .polygon: // kit(Quickswap v2) & kit3(uniswap v3)
                 return version.kit
             case .avalanche:
-                return .kit //kit (Trader Joe)
+                return .kitV3 // kitV3(uniswap)
             case .arbitrumOne:
                 return .kitV3
             default:
@@ -98,6 +98,8 @@ public enum DexType {
         case .uniswap:
             switch chain {
             case .binanceSmartChain: return try! Address(hex: "0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7")
+            case .avalanche:
+                return try! Address(hex: "0x740b1c1de25031C31FF4fC9A62f554A55cdC1baD")
             default:
                 if chain.isBaseChain {
                     return try! Address(hex: "0x33128a8fC17869897dcE68Ed026d694621f6FDfD")
@@ -118,7 +120,8 @@ public enum DexType {
         case .uniswap:
             switch chain {
             case .binanceSmartChain: return try! Address(hex: "0x78D78E420Da98ad378D7799bE8f4AF69033EB077")
-            default: 
+            case .avalanche: return try! Address(hex: "0xbe0F5544EC67e9B3b2D979aaA43f18Fd87E6257F")
+            default:
                 if chain.isBaseChain {
                     return try! Address(hex: "0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a")
                 } else {
@@ -137,6 +140,8 @@ public enum DexType {
         case .uniswap:
             switch chain {
             case .binanceSmartChain: return try! Address(hex: "0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2")
+            case .avalanche:
+                return try! Address(hex: "0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE")
             default:
                 if chain.isBaseChain {
                     return try! Address(hex: "0x2626664c2603336E57B271c5C0b26F421741e481")
