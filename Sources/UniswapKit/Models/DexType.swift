@@ -58,7 +58,7 @@ public enum DexType {
                 return .kitV3
             default:
                 if chain.isBaseChain {
-                    return .kitV3
+                    return version.kit
                 }
                 return nil
             }
