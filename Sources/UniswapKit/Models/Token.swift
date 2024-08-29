@@ -11,7 +11,7 @@ public enum Token {
         }
     }
 
-    public var decimals: Int {
+    var decimals: Int {
         switch self {
         case .eth: return 18
         case let .erc20(_, decimals): return decimals
