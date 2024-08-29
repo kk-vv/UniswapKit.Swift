@@ -4,8 +4,19 @@ import Foundation
 import HsCryptoKit
 import HsToolKit
 
-class TradeManager {
-    private let networkManager: NetworkManager
+public class TradeManager {
+    public let routerAddress: Address
+    private let factoryAddressString: String
+    private let initCodeHashString: String
+
+    private let evmKit: EvmKit.Kit
+    private let address: Address
+
+    init(evmKit: EvmKit.Kit, address: Address) throws {
+        routerAddress = try Self.routerAddress(chain: evmKit.chain)
+        factoryAddressString = try Self.factoryAddressString(chain: evmKit.chain)
+        initCodeHashString = try Self.initCodeHashString(chain: evmKit.chain)
+    }
 
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
@@ -216,7 +227,10 @@ extension TradeManager {
         return trades
     }
 
-    static func routerAddress(chain: Chain) throws -> Address {
+    public static func routerAddress(chain: Chain) throws -> Address {
+        if chain.isBaseChain {
+            return try Address(hex: "0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24")
+        }
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return try Address(hex: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D")
         case .binanceSmartChain: return try Address(hex: "0x10ED43C718714eb63d5aA57B78B54704E256024E")
@@ -226,7 +240,10 @@ extension TradeManager {
         }
     }
 
-    private static func factoryAddressString(chain: Chain) throws -> String {
+    public static func factoryAddressString(chain: Chain) throws -> String {
+        if chain.isBaseChain {
+            return "0x8909Dc15e40173Ff4699343b6eB8132c65e18eC6"
+        }
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
         case .binanceSmartChain: return "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
@@ -236,12 +253,15 @@ extension TradeManager {
         }
     }
 
-    private static func initCodeHashString(chain: Chain) throws -> String {
+    public static func initCodeHashString(chain: Chain) throws -> String {
+        if chain.isBaseChain {
+            return "0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f"
+        }
         switch chain {
         case .ethereum, .ethereumRopsten, .ethereumRinkeby, .ethereumKovan, .ethereumGoerli: return "0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f"
         case .binanceSmartChain: return "0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa3f4a84f69bd5"
         case .polygon: return "0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f"
-        case .avalanche: return "0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f"
+        case .avalanche: return "0x0bbca9af0511ad1a1da383135cf3a8d2ac620e549ef9f6ae3a4c33c2fed0af91"
         default: throw UnsupportedChainError.noInitCodeHash
         }
     }

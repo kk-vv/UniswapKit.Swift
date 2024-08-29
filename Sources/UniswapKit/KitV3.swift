@@ -72,8 +72,12 @@ public extension KitV3 {
 
     static func isSupported(chain: Chain) -> Bool {
         switch chain {
-        case .ethereumGoerli, .ethereum, .polygon, .optimism, .arbitrumOne, .binanceSmartChain: return true
-        default: return false
+        case .ethereumGoerli, .ethereum, .polygon, .optimism, .arbitrumOne, .binanceSmartChain, .avalanche: return true
+        default:
+            if chain.isBaseChain {
+                return true
+            }
+            return false
         }
     }
 }

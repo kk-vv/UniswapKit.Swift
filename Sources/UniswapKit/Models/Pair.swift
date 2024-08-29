@@ -86,7 +86,7 @@ public struct Pair {
 }
 
 extension Pair {
-    static func address(token0: Token, token1: Token, factoryAddressString: String, initCodeHashString: String) -> Address {
+    public static func address(token0: Token, token1: Token, factoryAddressString: String, initCodeHashString: String) -> Address {
         let data = "ff".hs.hexData! +
             factoryAddressString.hs.hexData! +
             Crypto.sha3(token0.address.raw + token1.address.raw) +
